@@ -1,0 +1,70 @@
+{
+  "name": "albion",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "debug": "NODE_OPTIONS='--inspect' next dev",
+    "format": "prettier --write . && prisma format",
+    "pregenerate": "find . -regex '.*__generated__' -type d -prune -exec rm -r {} \\;",
+    "graphql-schema": "npm run ts-node scripts/introspect-graphql-schema.ts && prettier --write schema.graphql && npm run generate",
+    "generate": "graphql-codegen",
+    "heroku-prebuild": "npm run install-global-packages",
+    "heroku-postbuild": "next build",
+    "lint": "eslint .",
+    "migrate": "prisma migrate dev",
+    "postinstall": "npx prisma generate && npm run graphql-schema",
+    "reset": "prisma migrate reset",
+    "seed": "prisma db seed",
+    "start": "next start -p $PORT",
+    "ts-node": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' -r tsconfig-paths/register",
+    "type-check": "tsc --pretty --noEmit"
+  },
+  "dependencies": {
+    "@apollo/client": "^4.3.0",
+    "@apollo/client-integration-nextjs": "^0.14.5",
+    "@apollo/server": "^5.5.1",
+    "@as-integrations/next": "^4.1.0",
+    "@graphql-tools/schema": "^8.5.1",
+    "@graphql-tools/utils": "^8.13.1",
+    "@prisma/adapter-pg": "^7.10.0",
+    "@prisma/client": "^7.10.0",
+    "graphql": "^16.14.2",
+    "next": "16.3.5",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "rxjs": "^7.8.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@graphql-codegen/add": "^7.1.0",
+    "@graphql-codegen/cli": "^7.4.2",
+    "@graphql-codegen/typescript": "^6.1.0",
+    "@graphql-codegen/typescript-apollo-client-helpers": "^4.0.1",
+    "@graphql-codegen/typescript-operations": "^6.1.7",
+    "@graphql-codegen/typescript-resolvers": "^6.1.0",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^24.10.0",
+    "@types/react": "19.3.0",
+    "dotenv": "^17.4.2",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.3.5",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react": "^7.37.5",
+    "postcss": "^8.4.18",
+    "prettier": "^3.9.9",
+    "prisma": "^7.10.0",
+    "tailwindcss": "^4.3.3",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.1.0",
+    "typescript": "~6.0.3",
+    "unique-names-generator": "^4.7.1"
+  },
+  "overrides": {
+    "@types/react": "19.3.0"
+  }
+}

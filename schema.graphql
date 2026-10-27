@@ -1,0 +1,23 @@
+type Query {
+  _empty: String
+  loans(status: LoanStatus): [Loan!]
+}
+
+type Mutation {
+  _empty: String
+  updateLoan(id: Int!, newStatus: LoanStatus!): Loan!
+}
+
+enum LoanStatus {
+  open
+  approved
+  activated
+  closed
+}
+
+type Loan {
+  id: Int!
+  name: String!
+  status: LoanStatus!
+  amount: Int!
+}
